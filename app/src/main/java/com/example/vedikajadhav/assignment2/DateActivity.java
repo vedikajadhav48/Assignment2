@@ -10,18 +10,18 @@ import android.widget.Button;
 
 
 public class DateActivity extends ActionBarActivity {
-    private Button mDatePicker;
+    //private Button mDatePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date);
 
-        mDatePicker = (Button)findViewById(R.id.select_date_button);
+       // mDatePicker = (Button)findViewById(R.id.select_date_button);
     }
 
-    public void showDatePickerDialog(View v) {
+  /*  public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
+    }*/
 }
