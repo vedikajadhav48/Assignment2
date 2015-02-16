@@ -3,6 +3,7 @@ package com.example.vedikajadhav.assignment2;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,11 +74,14 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        Log.i(TAG, "Inside onActivityResult");
         if(requestCode != Intent_Date_Index){
+            Log.i(TAG, "Inside onActivityResult return");
             return;
         }
         switch(resultCode){
             case RESULT_OK:
+                Log.i(TAG, "Inside onActivityResult OK");
                 //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                // DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -86,6 +90,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 int month = data.getIntExtra("Month", 1);
                 int day = data.getIntExtra("Day", 1);
                 int year = data.getIntExtra("Year", 2015);
+                Log.i(TAG, "Vedika back date" + day);
                 mMainEditText.setText(month + "/" + day + "/" + year);
                 //Date mDate = new Date();
                 //String formattedDate = dateFormat.format(date);
@@ -93,6 +98,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
               //  mMainEditText = format.parseObject()
                 break;
             case RESULT_CANCELED:
+                Log.i(TAG, "Inside onActivityResult Cncelled");
                 break;
         }
     }

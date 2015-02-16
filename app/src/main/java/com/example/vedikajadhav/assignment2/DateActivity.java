@@ -87,14 +87,18 @@ public class DateActivity extends ActionBarActivity {
         alertDialog.show();
     }
 
-    public void back(View button){
+    @Override
+    public void onBackPressed(){
         Log.i(TAG, "Back");
         Intent passDateBack = getIntent();
        // passDateBack.putExtra
         passDateBack.putExtra("Month", mDatePicker.getMonth());
         passDateBack.putExtra("Day", mDatePicker.getDayOfMonth());
         passDateBack.putExtra("Year", mDatePicker.getYear());
+        Log.i(TAG, "Vedika Month" + mDatePicker.getMonth());
+        setResult(RESULT_OK, passDateBack);
         finish();
+        super.onBackPressed();
     }
 
   /*  @Override
