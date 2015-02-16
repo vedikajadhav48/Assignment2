@@ -1,32 +1,71 @@
 package com.example.vedikajadhav.assignment2;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "MainActivity";
+    private Spinner mSpinner;
+    private Button mMainActivitySelectButton;
+    private String mActivitySelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner spinner = (Spinner) findViewById(R.id.activities_spinner);
+        mSpinner = (Spinner) findViewById(R.id.activities_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.activities_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-        //spinner.setOnItemSelectedListener(this);
+        mSpinner.setAdapter(adapter);
+        mSpinner.setOnItemSelectedListener(this);
+
+        mMainActivitySelectButton = (Button)findViewById(R.id.select_button);
     }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        mActivitySelected = parent.getItemAtPosition(pos).toString();
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+    public void selectActivity(View v){
+
+        final Intent go;
+        switch(mActivitySelected){
+            case "DateActivity":
+                go = new Intent(this, DateActivity.class);
+                startActivity(go);
+                break;
+            case "KeyboardActivity":
+                go = new Intent(this, KeyboardActivity.class);
+                startActivity(go);
+                break;
+        }
+    }
+
+
 
 
     @Override
