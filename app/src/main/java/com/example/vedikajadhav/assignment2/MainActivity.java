@@ -54,18 +54,16 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
         final Intent go;
         switch(mActivitySelected){
-            case "DateActivity":
+            case "Date":
                 go = new Intent(this, DateActivity.class);
                 startActivity(go);
                 break;
-            case "KeyboardActivity":
+            case "Keyboard":
                 go = new Intent(this, KeyboardActivity.class);
                 startActivity(go);
                 break;
         }
     }
-
-
 
 
     @Override
