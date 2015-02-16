@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
@@ -19,7 +22,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private static final String TAG = "MainActivity";
     private Spinner mSpinner;
     private Button mMainActivitySelectButton;
+    private EditText mMainEditText;
     private String mActivitySelected;
+    private static final int Intent_Date_Index = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         mSpinner.setOnItemSelectedListener(this);
 
         mMainActivitySelectButton = (Button)findViewById(R.id.select_button);
+        mMainEditText = (EditText)findViewById((R.id.main_edit_text));
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -56,11 +62,29 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         switch(mActivitySelected){
             case "Date":
                 go = new Intent(this, DateActivity.class);
-                startActivity(go);
+                startActivityForResult(go, Intent_Date_Index);
                 break;
             case "Keyboard":
                 go = new Intent(this, KeyboardActivity.class);
                 startActivity(go);
+                break;
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode != Intent_Date_Index){
+            return;
+        }
+        switch(resultCode){
+            case RESULT_OK:
+                SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+               // Date date = format.parse(data.toString());
+                int month = data.getIntExtra("Month", 1);
+                int day = data.getIntExtra("Day", 1);
+                int year = data.getIntExtra("Year", 2015);
+              //  mMainEditText = format.parseObject()
+                break;
+            case RESULT_CANCELED:
                 break;
         }
     }

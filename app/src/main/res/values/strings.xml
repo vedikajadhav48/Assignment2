@@ -14,5 +14,9 @@
     <string name="title_activity_date">DateActivity</string>
     <string name="select_date_button">Select Date</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="confirmation_dialog_title">Confirmation Dialog</string>
+    <string name="confirmation_dialog_message">Are you sure?</string>
+    <string name="confirm_positive_button">Yes</string>
+    <string name="confirm_negative_button">No</string>
 
 </resources>
