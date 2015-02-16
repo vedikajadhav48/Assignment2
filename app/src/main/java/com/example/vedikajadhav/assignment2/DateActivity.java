@@ -20,12 +20,14 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class DateActivity extends ActionBarActivity {
     private static final String TAG = "DateActivity";
     private Button mSelectDateButton;
     private DatePicker mDatePicker;
+    private Date mDate;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences mSharedPreferences;
 
@@ -59,6 +61,8 @@ public class DateActivity extends ActionBarActivity {
                 editor.putInt("Month", mDatePicker.getMonth());
                 editor.putInt("Day", mDatePicker.getDayOfMonth());
                 editor.putInt("Year", mDatePicker.getYear());
+                long dateTime = mDatePicker.getCalendarView().getDate();
+                Date date = new Date(dateTime);
                // editor.putString("username", username.getText().toString());
                 //editor.putString("password", password.getText().toString());
                 //editor.putString("logged", "logged");

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,11 +78,18 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         }
         switch(resultCode){
             case RESULT_OK:
-                SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+               // DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+               // SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                // Date date = format.parse(data.toString());
                 int month = data.getIntExtra("Month", 1);
                 int day = data.getIntExtra("Day", 1);
                 int year = data.getIntExtra("Year", 2015);
+                mMainEditText.setText(month + "/" + day + "/" + year);
+                //Date mDate = new Date();
+                //String formattedDate = dateFormat.format(date);
+                //String formatedDate = sdf.format(new Date(year, month, day));
               //  mMainEditText = format.parseObject()
                 break;
             case RESULT_CANCELED:
