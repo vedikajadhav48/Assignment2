@@ -92,7 +92,7 @@ public class DateActivity extends ActionBarActivity {
         Log.i(TAG, "Back");
         Intent passDateBack = getIntent();
        // passDateBack.putExtra
-        passDateBack.putExtra("Month", mDatePicker.getMonth());
+        passDateBack.putExtra("Month", (mDatePicker.getMonth())+1);
         passDateBack.putExtra("Day", mDatePicker.getDayOfMonth());
         passDateBack.putExtra("Year", mDatePicker.getYear());
         Log.i(TAG, "Vedika Month" + mDatePicker.getMonth());

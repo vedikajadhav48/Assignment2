@@ -27,6 +27,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private EditText mMainEditText;
     private String mActivitySelected;
     private static final int Intent_Date_Index = 123;
+    private int month, day, year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 break;
             case "Keyboard":
                 go = new Intent(this, KeyboardActivity.class);
+                go.putExtra("Month", month);
+                go.putExtra("Day", day);
+                go.putExtra("Year", year);
                 startActivity(go);
                 break;
         }
@@ -87,9 +91,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
                // SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                // Date date = format.parse(data.toString());
-                int month = data.getIntExtra("Month", 1);
-                int day = data.getIntExtra("Day", 1);
-                int year = data.getIntExtra("Year", 2015);
+                month = data.getIntExtra("Month", 1);
+                day = data.getIntExtra("Day", 1);
+                year = data.getIntExtra("Year", 2015);
                 Log.i(TAG, "Vedika back date" + day);
                 mMainEditText.setText(month + "/" + day + "/" + year);
                 //Date mDate = new Date();

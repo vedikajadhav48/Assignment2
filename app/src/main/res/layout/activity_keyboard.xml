@@ -7,19 +7,28 @@
         android:id="@+id/keyboard_edit_text_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25"/>
+        android:layout_weight="0.25"
+        android:editable="false">
+        <requestFocus/>
+    </EditText>
 
     <EditText
         android:id="@+id/keyboard_edit_text_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25"/>
+        android:layout_weight="0.25"
+        android:inputType="phone"
+        android:hint="@string/keyboard_edit_textPhone"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/keyboard_edit_text_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25"/>
+        android:layout_weight="0.25"
+        android:inputType="textEmailAddress"
+        android:hint="@string/keyboard_edit_textEmailAddress"
+        android:imeOptions="actionDone"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,14 +37,18 @@
         android:layout_weight="0.25">
 
         <Button
-            android:id="@+id/back_button"
+            android:id="@+id/keyboard_back_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/keyboard_back_button"
+            android:onClick="backButton"/>
 
         <Button
-            android:id="@+id/hide_button"
+            android:id="@+id/keyboard_hide_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/keyboard_hide_button"
+            android:onClick="hideKeyboard"/>
 
     </LinearLayout>
 
