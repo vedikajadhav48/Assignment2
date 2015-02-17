@@ -6,11 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 public class DesertListActivity extends ActionBarActivity implements DesertListFragment.OnFragmentInteractionListener {
-
-    @Override
-    public void onFragmentInteraction(String id) {
-
-    }
 /*    @Override
     protected Fragment createFragment() {
         return new DesertListFragment();
@@ -32,7 +27,10 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
         super.onBackPressed();
     }
 
+    @Override
+    public void onFragmentInteraction(String id) {
 
+    }
  /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener, DesertListFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "MainActivity";
     private Spinner mSpinner;
@@ -111,6 +111,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         }
     }
 
+    @Override
+    public void onFragmentInteraction(String id) {
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
