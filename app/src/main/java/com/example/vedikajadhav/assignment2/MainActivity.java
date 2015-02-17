@@ -13,12 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "MainActivity";
@@ -72,6 +66,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 go.putExtra("Month", month);
                 go.putExtra("Day", day);
                 go.putExtra("Year", year);
+                startActivity(go);
+                break;
+            case "Desert List":
+                go = new Intent(this, DesertListActivity.class);
                 startActivity(go);
                 break;
         }

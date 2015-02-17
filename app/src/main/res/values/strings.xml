@@ -8,6 +8,7 @@
     <string-array name="activities_array">
         <item>Date</item>
         <item>Keyboard</item>
+        <item>Desert List</item>
     </string-array>
 
     <string name="select_button">Select Activity</string>
@@ -22,5 +23,8 @@
     <string name="keyboard_edit_textPhone">Enter phone number</string>
     <string name="keyboard_back_button">Back</string>
     <string name="keyboard_hide_button">Hide</string>
+    <string name="title_activity_single_fragment">SingleFragmentActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_desert_list">DesertListActivity</string>
 
 </resources>

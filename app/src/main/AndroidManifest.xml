@@ -12,17 +12,26 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".KeyboardActivity"
             android:label="@string/title_activity_keyboard"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
             android:name=".DateActivity"
             android:label="@string/title_activity_date" >
+        </activity>
+        <activity
+            android:name=".SingleFragmentActivity"
+            android:label="@string/title_activity_single_fragment" >
+        </activity>
+        <activity
+            android:name=".DesertListActivity"
+            android:label="@string/title_activity_desert_list" >
         </activity>
     </application>
 
