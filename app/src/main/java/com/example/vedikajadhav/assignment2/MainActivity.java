@@ -1,6 +1,7 @@
 package com.example.vedikajadhav.assignment2;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
+public class MainActivity extends SingleFragmentActivity implements AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "MainActivity";
     private Spinner mSpinner;
@@ -22,6 +23,11 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private String mActivitySelected;
     private static final int Intent_Date_Index = 123;
     private int month, day, year;
+
+    @Override
+    protected Fragment createFragment() {
+        return new DesertListFragment();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
