@@ -33,7 +33,7 @@ public class KeyboardActivity extends ActionBarActivity {
         mKeyboardEditText1.setText(month + "/" + day + "/" + year);
     }
 
-    public void backButton(View v){
+    public void backButtonMethod(View v){
         onBackPressed();
     }
 

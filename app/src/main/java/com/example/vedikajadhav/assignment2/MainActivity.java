@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class MainActivity extends SingleFragmentActivity implements AdapterView.OnItemSelectedListener{
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "MainActivity";
     private Spinner mSpinner;
@@ -24,10 +24,10 @@ public class MainActivity extends SingleFragmentActivity implements AdapterView.
     private static final int Intent_Date_Index = 123;
     private int month, day, year;
 
-    @Override
+/*    @Override
     protected Fragment createFragment() {
         return new DesertListFragment();
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

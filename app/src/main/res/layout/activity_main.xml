@@ -6,7 +6,8 @@
     <Spinner
         android:id="@+id/activities_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
         </Spinner>
 
     <Button
@@ -14,12 +15,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/select_button"
-        android:onClick="selectActivity"/>
+        android:onClick="selectActivity"
+        android:layout_weight="1"/>
 
     <EditText
         android:id="@+id/main_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:editable="false"/>
+        android:editable="false"
+        android:layout_weight="1"/>
+
+    <fragment android:name="com.example.vedikajadhav.assignment2.DesertListFragment"
+              android:id="@+id/desert_list_fragment"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="5" />
 
 </LinearLayout>

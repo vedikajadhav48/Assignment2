@@ -34,7 +34,7 @@ public class DesertList {
     }
 
     public static class Desert {
-        private String id;
+        public String id;
         private String mDesertName;
 
         public Desert(String id, String desertName) {

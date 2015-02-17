@@ -3,7 +3,9 @@ package com.example.vedikajadhav.assignment2;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -20,20 +22,21 @@ import com.example.vedikajadhav.assignment2.dummy.DummyContent;
 public class DesertListFragment extends ListFragment {
     private static final String TAG = "DesertListFragment";
 
-   // private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-/*    public DesertListFragment() {
+ /*   public DesertListFragment() {
     }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("Desert List Activity");
-
+       /* if(getActivity().toString() == "DesertListActivity"){
+            getActivity().setTitle("Desert List Activity");
+        }*/
 
         // TODO: Change Adapter to display your content
 
@@ -43,6 +46,12 @@ public class DesertListFragment extends ListFragment {
                 R.array.activities_array, android.R.layout.simple_spinner_item);*/
         setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, DesertList.ITEMS));
     }
+
+/*    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        //super.onCreat
+
+    }*/
 
 
  /*   @Override
@@ -63,16 +72,17 @@ public class DesertListFragment extends ListFragment {
     }*/
 
 
-/*    @Override
+    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+           // mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            mListener.onFragmentInteraction(DesertList.ITEMS.get(position).id);
         }
-    }*/
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -84,9 +94,9 @@ public class DesertListFragment extends ListFragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-/*    public interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
-    }*/
+    }
 
 }

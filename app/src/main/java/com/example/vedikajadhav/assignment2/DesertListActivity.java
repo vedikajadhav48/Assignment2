@@ -1,22 +1,39 @@
 package com.example.vedikajadhav.assignment2;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 
-public class DesertListActivity extends SingleFragmentActivity {
+public class DesertListActivity extends ActionBarActivity implements DesertListFragment.OnFragmentInteractionListener {
 
     @Override
+    public void onFragmentInteraction(String id) {
+
+    }
+/*    @Override
     protected Fragment createFragment() {
         return new DesertListFragment();
-    }
+    }*/
 
- /*   @Override
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desert_list);
     }
 
+    public void backButtonMethod(View v){
+        onBackPressed();
+    }
 
     @Override
+    public void onBackPressed(){
+        finish();
+        super.onBackPressed();
+    }
+
+
+ /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_desert_list, menu);
