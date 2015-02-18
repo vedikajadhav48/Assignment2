@@ -21,6 +21,7 @@ import com.example.vedikajadhav.assignment2.dummy.DummyContent;
  */
 public class DesertListFragment extends ListFragment {
     private static final String TAG = "DesertListFragment";
+    private static String mSelectedItemIndex;
 
     private OnFragmentInteractionListener mListener;
 
@@ -44,7 +45,9 @@ public class DesertListFragment extends ListFragment {
                 android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS))*/;
     /*    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.activities_array, android.R.layout.simple_spinner_item);*/
-        setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, DesertList.ITEMS));
+       // setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, DesertList.ITEMS));
+       // setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_checked, android.R.id.text1, DesertList.ITEMS));
+        setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DesertList.ITEMS));
     }
 
 /*    @Override
@@ -54,7 +57,7 @@ public class DesertListFragment extends ListFragment {
     }*/
 
 
- /*   @Override
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
@@ -65,7 +68,7 @@ public class DesertListFragment extends ListFragment {
         }
     }
 
-    @Override
+/*    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -80,8 +83,12 @@ public class DesertListFragment extends ListFragment {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
            // mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-            mListener.onFragmentInteraction(DesertList.ITEMS.get(position).id);
+          //  l.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            mSelectedItemIndex = DesertList.ITEMS.get(position).id;
+            l.setItemChecked(position, true);
+            mListener.onFragmentInteraction(mSelectedItemIndex);
         }
+        l.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
     /**

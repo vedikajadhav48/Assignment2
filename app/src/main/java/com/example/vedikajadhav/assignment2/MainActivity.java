@@ -2,6 +2,7 @@ package com.example.vedikajadhav.assignment2;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener, DesertListFragment.OnFragmentInteractionListener{
@@ -23,6 +25,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private String mActivitySelected;
     private static final int Intent_Date_Index = 123;
     private int month, day, year;
+    private String mDesertListItemSelected;
 
 /*    @Override
     protected Fragment createFragment() {
@@ -76,6 +79,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 break;
             case "Desert List":
                 go = new Intent(this, DesertListActivity.class);
+               // go.putExtra("DesertListItemSelected", mDesertListItemSelected);
                 startActivity(go);
                 break;
         }
@@ -113,6 +117,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     @Override
     public void onFragmentInteraction(String id) {
+        FragmentManager fragments = getSupportFragmentManager();
+        DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);
+        mDesertListItemSelected = id;
+        //desertListFragment.onListItemClick(ListView l, View v, int position, String id);
 
     }
 

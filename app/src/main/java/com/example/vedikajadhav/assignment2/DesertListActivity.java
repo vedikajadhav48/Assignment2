@@ -11,10 +11,15 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
         return new DesertListFragment();
     }*/
 
+    private String desertListItemSelected;
+
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desert_list);
+
+       Bundle bundle = getIntent().getExtras();
+       desertListItemSelected = bundle.getString("DesertListItemSelected", null);
     }
 
     public void backButtonMethod(View v){
