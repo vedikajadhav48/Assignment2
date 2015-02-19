@@ -29,5 +29,7 @@
     <string name="title_activity_single_fragment">SingleFragmentActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_desert_list">DesertListActivity</string>
+    <string name="contextMenuItem1">Details</string>
+    <string name="contextMenuItem2">Delete</string>
 
 </resources>

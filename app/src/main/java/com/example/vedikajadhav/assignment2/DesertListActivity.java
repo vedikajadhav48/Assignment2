@@ -28,6 +28,7 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
        getSupportActionBar().setDisplayShowHomeEnabled(true);
        getSupportActionBar().setLogo(R.drawable.ic_launcher);
        getSupportActionBar().setDisplayUseLogoEnabled(true);
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
        Bundle bundle = getIntent().getExtras();
        desertListItemSelected = bundle.getString("DesertListItemSelected", null);

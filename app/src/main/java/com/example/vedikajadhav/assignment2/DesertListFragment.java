@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -50,8 +54,9 @@ public class DesertListFragment extends ListFragment {
        // setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, DesertList.ITEMS));
        // setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_checked, android.R.id.text1, DesertList.ITEMS));
        setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DesertList.ITEMS));
-       /* ListView dessertView = getListView();
-        dessertView.setItemChecked(getSelectedItemPosition(), true);*/
+/*        ListView dessertView = getListView();
+        registerForContextMenu(dessertView);*/
+        //dessertView.setItemChecked(getSelectedItemPosition(), true);
 
     }
 
@@ -65,6 +70,7 @@ public class DesertListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         Log.i(TAG, "onActivityCreated() fragment");
+        registerForContextMenu(getListView());
     }
 
 
@@ -129,6 +135,22 @@ public class DesertListFragment extends ListFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        Log.i(TAG, "Inside onCreateContextMenu");
+        /*super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);*/
+ /*       if(v.getId() == R.id.desert_list_fragment){
+            ListView
+        }*/
+       // AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)menuInfo;
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu.NONE, R.string.contextMenuItem1, Menu.NONE, "Details");
+        menu.add(Menu.NONE, R.string.contextMenuItem2, Menu.NONE, "Delete");
     }
 
 }

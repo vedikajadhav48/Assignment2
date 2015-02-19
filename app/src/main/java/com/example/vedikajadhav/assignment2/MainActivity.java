@@ -55,6 +55,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -69,8 +70,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     }
 
     public void selectActivity(View v){
+        openActivity();
 
-        final Intent go;
+/*        final Intent go;
         switch(mActivitySelected){
             case "Date":
                 go = new Intent(this, DateActivity.class);
@@ -88,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 go.putExtra("DesertListItemSelected", mDesertListItemSelected);
                 startActivity(go);
                 break;
-        }
+        }*/
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -147,10 +149,63 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        /*//noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);*/
+
+        switch (id)
+        {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+            case R.id.action_date:
+               /* Intent intent1 = new Intent(this, DateActivity.class);
+                startActivityForResult(intent1, Intent_Date_Index);*/
+                mActivitySelected = "Date";
+                openActivity();
+                return true;
+                //selectActivity(mMainActivitySelectButton);
+               // selectActivity(getView(R.id.select_button));
+            case R.id.action_keyboard:
+                mActivitySelected = "Keyboard";
+                openActivity();
+                return true;
+            case R.id.action_desert:
+                mActivitySelected = "Desert List";
+                openActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
+
+    public void openActivity(){
+        final Intent go;
+        switch(mActivitySelected){
+            case "Date":
+                go = new Intent(this, DateActivity.class);
+                startActivityForResult(go, Intent_Date_Index);
+                break;
+            case "Keyboard":
+                go = new Intent(this, KeyboardActivity.class);
+                go.putExtra("Month", month);
+                go.putExtra("Day", day);
+                go.putExtra("Year", year);
+                startActivity(go);
+                break;
+            case "Desert List":
+                go = new Intent(this, DesertListActivity.class);
+                go.putExtra("DesertListItemSelected", mDesertListItemSelected);
+                startActivity(go);
+                break;
+        }
+    }
+
+/*    private View getView(int select_button) {
+        return null;
+    }*/
 }
