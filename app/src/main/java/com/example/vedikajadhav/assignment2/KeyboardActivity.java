@@ -21,6 +21,10 @@ public class KeyboardActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keyboard);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         mKeyboardEditText1 = (EditText)findViewById(R.id.keyboard_edit_text_1);
         mBackButton = (Button)findViewById(R.id.keyboard_back_button);
         mHideButton = (Button)findViewById(R.id.keyboard_hide_button);
@@ -53,7 +57,7 @@ public class KeyboardActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_keyboard, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +36,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "MainActivity onCreate() called");
         setContentView(R.layout.activity_main);
 
         mSpinner = (Spinner) findViewById(R.id.activities_spinner);
@@ -49,6 +51,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
         mMainActivitySelectButton = (Button)findViewById(R.id.select_button);
         mMainEditText = (EditText)findViewById((R.id.main_edit_text));
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -79,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 break;
             case "Desert List":
                 go = new Intent(this, DesertListActivity.class);
-               // go.putExtra("DesertListItemSelected", mDesertListItemSelected);
+                go.putExtra("DesertListItemSelected", mDesertListItemSelected);
                 startActivity(go);
                 break;
         }
@@ -117,8 +123,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     @Override
     public void onFragmentInteraction(String id) {
-        FragmentManager fragments = getSupportFragmentManager();
-        DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);
+/*        FragmentManager fragments = getSupportFragmentManager();
+        DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);*/
         mDesertListItemSelected = id;
         //desertListFragment.onListItemClick(ListView l, View v, int position, String id);
 
@@ -127,8 +133,11 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+/*        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;*/
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -142,7 +151,6 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

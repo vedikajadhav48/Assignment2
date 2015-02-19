@@ -3,6 +3,9 @@
 
     <string name="app_name">Assignment2</string>
     <string name="action_settings">Settings</string>
+    <string name="action_date">Date</string>
+    <string name="action_keyboard">Keyboard</string>
+    <string name="action_desert">Desert</string>
     <string name="title_activity_keyboard">KeyboardActivity</string>
 
     <string-array name="activities_array">
