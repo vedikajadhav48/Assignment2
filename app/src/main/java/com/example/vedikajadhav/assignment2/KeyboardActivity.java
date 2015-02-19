@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -35,8 +36,10 @@ public class KeyboardActivity extends ActionBarActivity {
         int month = date.getInt("Month", 1);
         int day = date.getInt("Day", 1);
         int year = date.getInt("Year", 1);
-
-        mKeyboardEditText1.setText(month + "/" + day + "/" + year);
+        if(year != 0)
+        {
+            mKeyboardEditText1.setText(month + "/" + day + "/" + year);
+        }
     }
 
     public void backButtonMethod(View v){
@@ -59,8 +62,9 @@ public class KeyboardActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_keyboard, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -79,9 +83,7 @@ public class KeyboardActivity extends ActionBarActivity {
     }*/
         switch (id) {
             case android.R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -8,7 +8,4 @@
           android:title="@string/action_keyboard" />
     <item android:id="@+id/action_desert"
           android:title="@string/action_desert" />
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
-          android:orderInCategory="100"/>
 </menu>

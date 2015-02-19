@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -48,14 +49,15 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
     public void onFragmentInteraction(String id) {
         FragmentManager fragments = getSupportFragmentManager();
         DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);
-        desertListFragment.setSelectedItemIndex(desertListItemSelected);
+        //desertListFragment.setSelectedItemIndex(desertListItemSelected);
 
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_desert_list, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_desert_list, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

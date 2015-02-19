@@ -125,9 +125,12 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     @Override
     public void onFragmentInteraction(String id) {
-/*        FragmentManager fragments = getSupportFragmentManager();
-        DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);*/
+        FragmentManager fragments = getSupportFragmentManager();
+        DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);
         mDesertListItemSelected = id;
+ /*       Bundle args = new Bundle();
+        args.putString("itemSelected", mDesertListItemSelected);
+        desertListFragment.setArguments(args);*/
         //desertListFragment.onListItemClick(ListView l, View v, int position, String id);
 
     }

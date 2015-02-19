@@ -31,6 +31,7 @@ public class DateActivity extends ActionBarActivity {
     private Date mDate;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences mSharedPreferences;
+    private Boolean isDateSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,8 @@ public class DateActivity extends ActionBarActivity {
         // set positive button: Yes message
         alertDialogBuilder.setPositiveButton(R.string.confirm_positive_button,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int id) {
+                isDateSet = true;
+
                 // go to a new activity of the app
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.putInt("Month", mDatePicker.getMonth());
@@ -96,13 +99,13 @@ public class DateActivity extends ActionBarActivity {
     @Override
     public void onBackPressed(){
         Log.i(TAG, "Back");
-        Intent passDateBack = getIntent();
-       // passDateBack.putExtra
-        passDateBack.putExtra("Month", (mDatePicker.getMonth())+1);
-        passDateBack.putExtra("Day", mDatePicker.getDayOfMonth());
-        passDateBack.putExtra("Year", mDatePicker.getYear());
-        Log.i(TAG, "Vedika Month" + mDatePicker.getMonth());
-        setResult(RESULT_OK, passDateBack);
+            Intent passDateBack = getIntent();
+            // passDateBack.putExtra
+            passDateBack.putExtra("Month", (mDatePicker.getMonth()) + 1);
+            passDateBack.putExtra("Day", mDatePicker.getDayOfMonth());
+            passDateBack.putExtra("Year", mDatePicker.getYear());
+            Log.i(TAG, "Vedika Month" + mDatePicker.getMonth());
+            setResult(RESULT_OK, passDateBack);
         finish();
         super.onBackPressed();
     }
@@ -138,9 +141,10 @@ public class DateActivity extends ActionBarActivity {
         switch (id)
         {
             case android.R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
+                onBackPressed();
+                /*Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                startActivity(intent);*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

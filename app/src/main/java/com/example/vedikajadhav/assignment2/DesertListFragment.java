@@ -26,7 +26,7 @@ import com.example.vedikajadhav.assignment2.dummy.DummyContent;
  */
 public class DesertListFragment extends ListFragment {
     private static final String TAG = "DesertListFragment";
-    private static String mSelectedItemIndex;
+    private String mSelectedItemIndex;
 
     private OnFragmentInteractionListener mListener;
 
@@ -86,21 +86,30 @@ public class DesertListFragment extends ListFragment {
         }
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        ListView dessertList = getListView();
+       // int selectedItemIndex = getArguments().getInt("itemSelected");
+       // dessertList.setItemChecked(selectedItemIndex, true);
+
+    }
+
 /*    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }*/
 
-    public void setSelectedItemIndex(String desertListItemSelected){
+/*    public void setSelectedItemIndex(String desertListItemSelected){
         mSelectedItemIndex = desertListItemSelected;
         Log.i(TAG, "setSelectedItemIndex() fragment" + mSelectedItemIndex);
-        /*ListView desertList = getListView();
+        *//*ListView desertList = getListView();
         desertList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DesertList.ITEMS));
-        desertList.setItemChecked(getSelectedItemPosition(),true);*/
+        desertList.setItemChecked(getSelectedItemPosition(),true);*//*
 
-    }
+    }*/
 
 
     @Override
@@ -117,6 +126,7 @@ public class DesertListFragment extends ListFragment {
             mSelectedItemIndex = DesertList.ITEMS.get(position).id;
 
             mListener.onFragmentInteraction(mSelectedItemIndex);
+           // mListener.onFragmentInteraction(position);
         }
 /*        l.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         l.setItemChecked(position, true);*/
