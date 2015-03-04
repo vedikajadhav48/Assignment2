@@ -27,6 +27,7 @@ import com.example.vedikajadhav.assignment2.dummy.DummyContent;
 public class DesertListFragment extends ListFragment {
     private static final String TAG = "DesertListFragment";
     private String mSelectedItemIndex;
+    private int mCurCheckPosition = 0;
 
     private OnFragmentInteractionListener mListener;
 
@@ -34,50 +35,53 @@ public class DesertListFragment extends ListFragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
- /*   public DesertListFragment() {
-    }*/
+    public DesertListFragment() {
+    }
+
+    public static DesertListFragment newInstance(Bundle b) {
+        DesertListFragment fragment = new DesertListFragment();
+        fragment.setArguments(b);
+        Log.i(TAG, "setArgument bundle" +b);
+        return fragment;
+    }
+
+    public static DesertListFragment newInstance(int index) {
+        DesertListFragment f = new DesertListFragment();
+
+        // Supply index input as an argument.
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        f.setArguments(args);
+
+        return f;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate() fragment ");
-       /* if(getActivity().toString() == "DesertListActivity"){
-            getActivity().setTitle("Desert List Activity");
-        }*/
+        Log.i(TAG, "DesertListFragment onCreate()");
 
-        // TODO: Change Adapter to display your content
-
-/*        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS))*/;
-    /*    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.activities_array, android.R.layout.simple_spinner_item);*/
-       // setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, DesertList.ITEMS));
-       // setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_checked, android.R.id.text1, DesertList.ITEMS));
        setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DesertList.ITEMS));
-/*        ListView dessertView = getListView();
-        registerForContextMenu(dessertView);*/
-        //dessertView.setItemChecked(getSelectedItemPosition(), true);
-
     }
-
-/*    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        //super.onCreat
-
-    }*/
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        Log.i(TAG, "onActivityCreated() fragment");
+        Log.i(TAG, "DesertListFragment onActivityCreated()");
         registerForContextMenu(getListView());
+        /*Bundle args = this.getArguments();
+        if(args !=null) {
+            mCurCheckPosition = args.getInt("DesertListItemSelected", 0);
+            Log.i(TAG,"getArguments in DesertListFragment" + mCurCheckPosition);
+        }
+        // Make sure our UI is in the correct state.
+        showItemClicked(mCurCheckPosition);*/
     }
-
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        Log.i(TAG, "onAttach() fragment");
+        Log.i(TAG, "DesertListFragment onAttach()");
         try {
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
@@ -89,47 +93,57 @@ public class DesertListFragment extends ListFragment {
     @Override
     public void onStart(){
         super.onStart();
-        ListView dessertList = getListView();
-       // int selectedItemIndex = getArguments().getInt("itemSelected");
-       // dessertList.setItemChecked(selectedItemIndex, true);
-
+        Log.i(TAG, "DesertListFragment onStart()");
+        Bundle args = this.getArguments();
+        if(args != null) {
+            mCurCheckPosition = args.getInt("DesertListItemSelected", 0);
+            Log.i(TAG,"getArguments in DesertListFragment" + mCurCheckPosition);
+        }
+        // Make sure our UI is in the correct state.
+        showItemClicked(mCurCheckPosition);
     }
 
 /*    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        super.onCreateView(inflater, container, savedInstanceState);
+     //   Bundle bundle = this.getArguments();
+//        mCurCheckPosition = bundle.getInt("DesertListItemSelected");
+        View view = getActivity().findViewById(R.id.desert_list_fragment);
+        Log.i(TAG, "DesertListFragment onCreateView" + mCurCheckPosition);
+        return view;
     }*/
 
-/*    public void setSelectedItemIndex(String desertListItemSelected){
-        mSelectedItemIndex = desertListItemSelected;
-        Log.i(TAG, "setSelectedItemIndex() fragment" + mSelectedItemIndex);
-        *//*ListView desertList = getListView();
-        desertList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DesertList.ITEMS));
-        desertList.setItemChecked(getSelectedItemPosition(),true);*//*
-
-    }*/
-
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "DesertListFragment onSaveInstanceState()");
+        /*outState.putInt("curChoice", mCurCheckPosition);*/
+    }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Log.i(TAG, "onListItemClicked() fragment called" + position);
+           showItemClicked(position);
+        /*super.onListItemClick(l, v, position, id);
         l.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         l.setItemChecked(position, true);
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-           // mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-          //  l.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             mSelectedItemIndex = DesertList.ITEMS.get(position).id;
-
             mListener.onFragmentInteraction(mSelectedItemIndex);
-           // mListener.onFragmentInteraction(position);
+        }*/
+    }
+
+    public void showItemClicked(int index){
+        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        getListView().setItemChecked(index, true);
+        if (null != mListener) {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            mSelectedItemIndex = DesertList.ITEMS.get(index).id;
+           // mListener.onFragmentInteraction(mSelectedItemIndex);
+            mListener.onFragmentInteraction(index);
         }
-/*        l.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        l.setItemChecked(position, true);*/
     }
 
     /**
@@ -143,21 +157,13 @@ public class DesertListFragment extends ListFragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+       // public void onFragmentInteraction(String id);
+        public void onFragmentInteraction(int position);
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        Log.i(TAG, "Inside onCreateContextMenu");
-        /*super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.context_menu, menu);*/
- /*       if(v.getId() == R.id.desert_list_fragment){
-            ListView
-        }*/
-       // AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)menuInfo;
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add(Menu.NONE, R.string.contextMenuItem1, Menu.NONE, "Details");
         menu.add(Menu.NONE, R.string.contextMenuItem2, Menu.NONE, "Delete");

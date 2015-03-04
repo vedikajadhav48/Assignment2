@@ -51,7 +51,6 @@ public class DateActivity extends ActionBarActivity {
             Log.i(TAG, mSharedPreferences.toString());
             mDatePicker.updateDate(mSharedPreferences.getInt("Year", 2015), mSharedPreferences.getInt("Month", 1), mSharedPreferences.getInt("Day", 1));
         }
-        //mDatePicker.updateDate();
     }
 
     public void confirmationDialog(View v){
@@ -72,14 +71,7 @@ public class DateActivity extends ActionBarActivity {
                 editor.putInt("Year", mDatePicker.getYear());
                 long dateTime = mDatePicker.getCalendarView().getDate();
                 Date date = new Date(dateTime);
-               // editor.putString("username", username.getText().toString());
-                //editor.putString("password", password.getText().toString());
-                //editor.putString("logged", "logged");
                 editor.commit();
-                //Log.i(TAG, mDatePicker.get);
-              /*  Intent positveActivity = new Intent(getApplicationContext(),
-                        PositiveActivity.class);
-                startActivity(positveActivity);*/
             }
         });
         // set negative button: No message
@@ -110,11 +102,6 @@ public class DateActivity extends ActionBarActivity {
         super.onBackPressed();
     }
 
-  /*  @Override
-    public void onActionModeFinish(ActionMode actionMode){
-        super.onActionModeFinished(actionMode);
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -129,22 +116,10 @@ public class DateActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Log.i(TAG, "onOptionsDate" +id);
-
-        //noinspection SimplifiableIfStatement
- /*       if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);*/
-
         switch (id)
         {
             case android.R.id.home:
                 onBackPressed();
-                /*Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

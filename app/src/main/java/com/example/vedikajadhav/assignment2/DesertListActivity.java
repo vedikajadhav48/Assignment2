@@ -1,5 +1,6 @@
 package com.example.vedikajadhav.assignment2;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,26 +14,33 @@ import android.view.View;
 
 public class DesertListActivity extends ActionBarActivity implements DesertListFragment.OnFragmentInteractionListener {
     public static final String TAG = "DesertListActivity";
-/*    @Override
-    protected Fragment createFragment() {
-        return new DesertListFragment();
-    }*/
-
-    private String desertListItemSelected;
+    //private String desertListItemSelected;
+    private int desertListItemSelected;
+    private Bundle bundle;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        Log.i(TAG, "DesertListActivity onCreate()");
-        setContentView(R.layout.activity_desert_list);
+
+
+       bundle = getIntent().getExtras();
+       desertListItemSelected = bundle.getInt("DesertListItemSelected", 0);
+       //DesertListFragment desertListFragment = DesertListFragment.newInstance(desertListItemSelected);
+       DesertListFragment abc = new DesertListFragment();
+       Bundle x = new Bundle();
+       x.putInt("DesertListItemSelected", bundle.getInt("DesertListItemSelected"));
+       abc.setArguments(x);
+       Log.i(TAG, "desertListActivity in DesertListActivity" + bundle);
+      /* desertListFragment.setArguments(bundle);*/
+
+       setContentView(R.layout.activity_desert_list);
 
        getSupportActionBar().setDisplayShowHomeEnabled(true);
        getSupportActionBar().setLogo(R.drawable.ic_launcher);
        getSupportActionBar().setDisplayUseLogoEnabled(true);
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       Bundle bundle = getIntent().getExtras();
-       desertListItemSelected = bundle.getString("DesertListItemSelected", null);
     }
 
     public void backButtonMethod(View v){
@@ -46,9 +54,11 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
-        FragmentManager fragments = getSupportFragmentManager();
+    public void onFragmentInteraction(int position) {
+        Log.i(TAG, "DesertListActivity-->onFragmentInteraction");
+/*        FragmentManager fragments = getSupportFragmentManager();
         DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);
+        desertListFragment.setArguments(bundle);*/
         //desertListFragment.setSelectedItemIndex(desertListItemSelected);
 
     }
@@ -66,12 +76,6 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
-
         switch (id)
         {
             case android.R.id.home:
@@ -82,7 +86,5 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-        //return super.onOptionsItemSelected(item);
     }
 }

@@ -26,12 +26,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private String mActivitySelected;
     private static final int Intent_Date_Index = 123;
     private int month, day, year;
-    private String mDesertListItemSelected;
-
-/*    @Override
-    protected Fragment createFragment() {
-        return new DesertListFragment();
-    }*/
+   // private String mDesertListItemSelected;
+    private int mDesertListItemSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +52,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         getSupportActionBar().setLogo(R.drawable.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+        /*DesertListFragment desertListFragment = new DesertListFragment();
+        desertListFragment.setArguments(savedInstanceState);*/
+
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -71,75 +70,34 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     public void selectActivity(View v){
         openActivity();
-
-/*        final Intent go;
-        switch(mActivitySelected){
-            case "Date":
-                go = new Intent(this, DateActivity.class);
-                startActivityForResult(go, Intent_Date_Index);
-                break;
-            case "Keyboard":
-                go = new Intent(this, KeyboardActivity.class);
-                go.putExtra("Month", month);
-                go.putExtra("Day", day);
-                go.putExtra("Year", year);
-                startActivity(go);
-                break;
-            case "Desert List":
-                go = new Intent(this, DesertListActivity.class);
-                go.putExtra("DesertListItemSelected", mDesertListItemSelected);
-                startActivity(go);
-                break;
-        }*/
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        Log.i(TAG, "Inside onActivityResult");
         if(requestCode != Intent_Date_Index){
-            Log.i(TAG, "Inside onActivityResult return");
             return;
         }
         switch(resultCode){
             case RESULT_OK:
-                Log.i(TAG, "Inside onActivityResult OK");
-                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-               // DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-               // SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-               // Date date = format.parse(data.toString());
                 month = data.getIntExtra("Month", 1);
                 day = data.getIntExtra("Day", 1);
                 year = data.getIntExtra("Year", 2015);
-                Log.i(TAG, "Vedika back date" + day);
                 mMainEditText.setText(month + "/" + day + "/" + year);
-                //Date mDate = new Date();
-                //String formattedDate = dateFormat.format(date);
-                //String formatedDate = sdf.format(new Date(year, month, day));
-              //  mMainEditText = format.parseObject()
                 break;
             case RESULT_CANCELED:
-                Log.i(TAG, "Inside onActivityResult Cncelled");
                 break;
         }
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
-        FragmentManager fragments = getSupportFragmentManager();
-        DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);
-        mDesertListItemSelected = id;
- /*       Bundle args = new Bundle();
-        args.putString("itemSelected", mDesertListItemSelected);
-        desertListFragment.setArguments(args);*/
-        //desertListFragment.onListItemClick(ListView l, View v, int position, String id);
-
+    public void onFragmentInteraction(int position) {
+        /*FragmentManager fragments = getSupportFragmentManager();
+        DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);*/
+        mDesertListItemSelected = position;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-/*        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;*/
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
@@ -151,13 +109,6 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        /*//noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);*/
-
         switch (id)
         {
             case android.R.id.home:
@@ -166,13 +117,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 startActivity(intent);
                 return true;
             case R.id.action_date:
-               /* Intent intent1 = new Intent(this, DateActivity.class);
-                startActivityForResult(intent1, Intent_Date_Index);*/
                 mActivitySelected = "Date";
                 openActivity();
                 return true;
-                //selectActivity(mMainActivitySelectButton);
-               // selectActivity(getView(R.id.select_button));
             case R.id.action_keyboard:
                 mActivitySelected = "Keyboard";
                 openActivity();
@@ -207,8 +154,4 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 break;
         }
     }
-
-/*    private View getView(int select_button) {
-        return null;
-    }*/
 }

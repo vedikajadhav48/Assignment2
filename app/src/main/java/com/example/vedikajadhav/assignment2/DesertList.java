@@ -10,12 +10,12 @@ import java.util.Map;
  */
 public class DesertList {
     /**
-     * An array of sample (dummy) items.
+     * An array of dessert items.
      */
     public static List<Desert> ITEMS = new ArrayList<Desert>();
 
     /**
-     * A map of sample (dummy) items, by ID.
+     * A map of items, by ID.
      */
     public static Map<String, Desert> ITEM_MAP = new HashMap<String, Desert>();
 
