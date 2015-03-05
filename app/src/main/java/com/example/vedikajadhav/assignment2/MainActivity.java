@@ -1,5 +1,6 @@
 package com.example.vedikajadhav.assignment2;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,8 +26,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private EditText mMainEditText;
     private String mActivitySelected;
     private static final int Intent_Date_Index = 123;
+    private static final int Intent_Desert_List_Item = 456;
     private int month, day, year;
-   // private String mDesertListItemSelected;
+    DesertListFragment fragment = new DesertListFragment();
     private int mDesertListItemSelected;
 
     @Override
@@ -47,6 +49,12 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
         mMainActivitySelectButton = (Button)findViewById(R.id.select_button);
         mMainEditText = (EditText)findViewById((R.id.main_edit_text));
+
+        FragmentManager fragments = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragments.beginTransaction();
+
+        fragmentTransaction.add(R.id.fragment_holder, fragment);
+        fragmentTransaction.commit();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.ic_launcher);
@@ -73,19 +81,49 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode != Intent_Date_Index){
+        if(requestCode != Intent_Date_Index && requestCode != Intent_Desert_List_Item){
+            Log.i(TAG, "Return main");
             return;
         }
-        switch(resultCode){
-            case RESULT_OK:
-                month = data.getIntExtra("Month", 1);
-                day = data.getIntExtra("Day", 1);
-                year = data.getIntExtra("Year", 2015);
-                mMainEditText.setText(month + "/" + day + "/" + year);
-                break;
-            case RESULT_CANCELED:
-                break;
+        if(requestCode == Intent_Date_Index){
+            Log.i(TAG, "Intent_Date_Index");
+            switch(resultCode){
+                case RESULT_OK:
+                    month = data.getIntExtra("Month", 1);
+                    day = data.getIntExtra("Day", 1);
+                    year = data.getIntExtra("Year", 2015);
+                    mMainEditText.setText(month + "/" + day + "/" + year);
+                    break;
+                case RESULT_CANCELED:
+                    break;
+            }
         }
+        else{
+            Log.i(TAG, "Intent_Desert_List_Item");
+            switch(resultCode){
+                case RESULT_OK:
+                    mDesertListItemSelected = data.getIntExtra("desertItemSelected", 0);
+                    Log.i(TAG, "desertItemSelected in MainActivity" + mDesertListItemSelected);
+                   // DesertListFragment fragment1 = DesertListFragment.newInstance(mDesertListItemSelected);
+                    FragmentManager fragments = getSupportFragmentManager();
+                   // android.support.v4.app.FragmentTransaction fragmentTransaction = fragments.beginTransaction();
+
+                    //fragmentTransaction.replace(R.id.fragment_holder, fragment1);
+                    //fragmentTransaction.commit();
+                    fragment = (DesertListFragment)fragments.findFragmentById(R.id.fragment_holder);
+                    fragment.showItemClicked(mDesertListItemSelected);
+
+                  /*  Bundle args = new Bundle();
+                    args.putInt("desertItemSelected", mDesertListItemSelected);
+                    Log.i(TAG, "desertItemSelected in MainActivity" + args);
+                    DesertListFragment fragment1 = new DesertListFragment();
+                    fragment1.setArguments(args);*/
+                    break;
+                case RESULT_CANCELED:
+                    break;
+            }
+        }
+
     }
 
     @Override
@@ -150,7 +188,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             case "Desert List":
                 go = new Intent(this, DesertListActivity.class);
                 go.putExtra("DesertListItemSelected", mDesertListItemSelected);
-                startActivity(go);
+                startActivityForResult(go, Intent_Desert_List_Item);
                 break;
         }
     }

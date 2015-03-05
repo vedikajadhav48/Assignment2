@@ -38,13 +38,6 @@ public class DesertListFragment extends ListFragment {
     public DesertListFragment() {
     }
 
-    public static DesertListFragment newInstance(Bundle b) {
-        DesertListFragment fragment = new DesertListFragment();
-        fragment.setArguments(b);
-        Log.i(TAG, "setArgument bundle" +b);
-        return fragment;
-    }
-
     public static DesertListFragment newInstance(int index) {
         DesertListFragment f = new DesertListFragment();
 
@@ -60,6 +53,11 @@ public class DesertListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "DesertListFragment onCreate()");
+        Bundle args = this.getArguments();
+        if(args !=null) {
+            mCurCheckPosition = args.getInt("index", 0);
+            Log.i(TAG,"getArguments in DesertListFragment" + mCurCheckPosition);
+        }
 
        setListAdapter(new ArrayAdapter<DesertList.Desert>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, DesertList.ITEMS));
     }
@@ -69,13 +67,8 @@ public class DesertListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Log.i(TAG, "DesertListFragment onActivityCreated()");
         registerForContextMenu(getListView());
-        /*Bundle args = this.getArguments();
-        if(args !=null) {
-            mCurCheckPosition = args.getInt("DesertListItemSelected", 0);
-            Log.i(TAG,"getArguments in DesertListFragment" + mCurCheckPosition);
-        }
         // Make sure our UI is in the correct state.
-        showItemClicked(mCurCheckPosition);*/
+        showItemClicked(mCurCheckPosition);
     }
 
     @Override
@@ -94,13 +87,6 @@ public class DesertListFragment extends ListFragment {
     public void onStart(){
         super.onStart();
         Log.i(TAG, "DesertListFragment onStart()");
-        Bundle args = this.getArguments();
-        if(args != null) {
-            mCurCheckPosition = args.getInt("DesertListItemSelected", 0);
-            Log.i(TAG,"getArguments in DesertListFragment" + mCurCheckPosition);
-        }
-        // Make sure our UI is in the correct state.
-        showItemClicked(mCurCheckPosition);
     }
 
 /*    @Override

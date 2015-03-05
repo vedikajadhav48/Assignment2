@@ -22,19 +22,24 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        Log.i(TAG, "DesertListActivity onCreate()");
+       setContentView(R.layout.activity_desert_list);
+
 
 
        bundle = getIntent().getExtras();
        desertListItemSelected = bundle.getInt("DesertListItemSelected", 0);
-       //DesertListFragment desertListFragment = DesertListFragment.newInstance(desertListItemSelected);
-       DesertListFragment abc = new DesertListFragment();
+       DesertListFragment desertListFragment = DesertListFragment.newInstance(desertListItemSelected);
+       /*DesertListFragment abc = new DesertListFragment();
        Bundle x = new Bundle();
        x.putInt("DesertListItemSelected", bundle.getInt("DesertListItemSelected"));
-       abc.setArguments(x);
+       abc.setArguments(x);*/
+      // fragment.setArguments(bundle);
        Log.i(TAG, "desertListActivity in DesertListActivity" + bundle);
-      /* desertListFragment.setArguments(bundle);*/
 
-       setContentView(R.layout.activity_desert_list);
+       FragmentManager fragments = getSupportFragmentManager();
+       android.support.v4.app.FragmentTransaction fragmentTransaction = fragments.beginTransaction();
+       fragmentTransaction.add(R.id.fragment_holder, desertListFragment);
+       fragmentTransaction.commit();
 
        getSupportActionBar().setDisplayShowHomeEnabled(true);
        getSupportActionBar().setLogo(R.drawable.ic_launcher);
@@ -49,13 +54,18 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
 
     @Override
     public void onBackPressed(){
+        Intent passItemSelectedBack = getIntent();
+        passItemSelectedBack.putExtra("desertItemSelected", desertListItemSelected);
+        Log.i(TAG, "Vedika Item Selected" + desertListItemSelected);
+        setResult(RESULT_OK, passItemSelectedBack);
         finish();
         super.onBackPressed();
     }
 
     @Override
     public void onFragmentInteraction(int position) {
-        Log.i(TAG, "DesertListActivity-->onFragmentInteraction");
+        Log.i(TAG, "DesertListActivity-->onFragmentInteraction" + position);
+        desertListItemSelected = position;
 /*        FragmentManager fragments = getSupportFragmentManager();
         DesertListFragment desertListFragment = (DesertListFragment)fragments.findFragmentById(R.id.desert_list_fragment);
         desertListFragment.setArguments(bundle);*/
