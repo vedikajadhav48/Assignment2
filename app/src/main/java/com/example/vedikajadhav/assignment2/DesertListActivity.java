@@ -48,6 +48,36 @@ public class DesertListActivity extends ActionBarActivity implements DesertListF
 
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.i(TAG, "DesertListActivity started");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.i(TAG, "DesertListActivity paused");
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.i(TAG, "DesertListActivity Stopped");
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.i(TAG, "DesertListActivity Resumed");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "DesertListActivity onSaveInstanceState");
+    }
+
     public void backButtonMethod(View v){
         onBackPressed();
     }

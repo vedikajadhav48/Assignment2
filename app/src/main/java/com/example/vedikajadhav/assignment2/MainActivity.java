@@ -36,6 +36,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         Log.i(TAG, "MainActivity onCreate() called");
         setContentView(R.layout.activity_main);
+        Log.i(TAG, "MainActivity onCreate() after setContentView");
 
         mSpinner = (Spinner) findViewById(R.id.activities_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -60,9 +61,46 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         getSupportActionBar().setLogo(R.drawable.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+        Log.i(TAG, "MainActivity created");
         /*DesertListFragment desertListFragment = new DesertListFragment();
         desertListFragment.setArguments(savedInstanceState);*/
 
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.i(TAG, "MainActivity started");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.i(TAG, "MainActivity paused");
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.i(TAG, "MainActivity Stopped");
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.i(TAG, "MainActivity Resumed");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "MainActivity onSaveInstanceState");
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Log.i(TAG, "MainActivity destroyed");
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,

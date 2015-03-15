@@ -89,6 +89,36 @@ public class DesertListFragment extends ListFragment {
         Log.i(TAG, "DesertListFragment onStart()");
     }
 
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.i(TAG, "DesertListFragment onStop()");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.i(TAG, "DesertListFragment onPause()");
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.i(TAG, "DesertListFragment onResume()");
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Log.i(TAG, "DesertListFragment onDestroy()");
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        Log.i(TAG, "DesertListFragment onDetach()");
+    }
+
 /*    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
